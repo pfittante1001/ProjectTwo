@@ -70,8 +70,6 @@ namespace ProjectTwo
                             minNum = tempMinNum;
                         }     
                     }
-
-                    Console.WriteLine("test2");
                     minNum = int.Parse(minNumStrUpper);
                 }
 
