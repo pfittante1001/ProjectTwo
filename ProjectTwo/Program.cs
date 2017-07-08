@@ -11,8 +11,21 @@ namespace ProjectTwo
 
         static void Main(string[] args)
         {
-//Begin Project Part One
-            Console.Write("\t\t\tWelcome to the Lucky Number Game\n\n\n\n\n");
+            //Begin Project Two Part One
+            bool exitProgram = false;
+            while (exitProgram == false)
+            {
+                //Global variables
+                int minNum;
+                int tempMinNum;
+                int maxNum;
+                int tempMaxNum;
+                int[] luckyNum = new int[6];
+                int[] randNumArray = new int[6];
+                int numMatch1;
+                int numMatch2;
+                int counter = 0;
+                Console.Write("\t\t\tWelcome to the Lucky Number Game\n\n\n\n\n");
 
             Console.Write("     To play the game, you must enter two numbers. One will be the loweset\n\n");
 
@@ -24,19 +37,14 @@ namespace ProjectTwo
 
             Console.Write("           have choosen that match the random lucky numbers in your range.\n\n");
 
+            Console.Write("           You win a jackpot of $250,000 if you quess all six numbers.\n\n");
+
             Console.Write("                       Please press the \" Enter\" to continue.\n\n");
+
 
             Console.ReadLine();
 
-            bool exitProgram = false;
-            while (exitProgram == false)
-            {
-                //Global variables
-                int minNum;
-                int tempMinNum;
-                int maxNum;
-                int tempMaxNum;
-                int[] luckyNum = new int[6];
+           
 
                 Console.Clear();
                 Console.Write("\n\nPlease enter the min number you have chosen for your range of numbers\n");
@@ -179,14 +187,55 @@ namespace ProjectTwo
                         
                     }
                 }
-//End Project Part One
-//Begin Project Part Two
+//End Project Two Part One
+//Begin Project Two Part Two
+                Console.Clear();
+                Random randNum = new Random();
 
-                //Input and validate max number
-                //Console.WriteLine(minNum);
-                //Console.WriteLine(maxNum);
-                exitProgram = true;
-            }//end while loop
+                for (int i = 0; i < randNumArray.Length; i++)
+                {
+                    randNumArray[i] = randNum.Next(minNum, maxNum);
+                    Console.Write("Lucky Number: {0}\n", randNumArray[i]);
+                }
+
+//End Project Two Part Two
+//Begin Project Two Part Three
+
+                for (int i = 0; i < randNumArray.Length; i++)
+                {
+                    
+                    for (int j = 0; j < luckyNum.Length; j++)
+                    {
+                        
+                        if ( randNumArray[i] == luckyNum[j])
+                        {
+                            counter++;
+                         }
+                    }
+                }
+
+                Console.Clear();
+                Console.Write("You have guessed {0} numbers correctly. \n\n", counter);
+                Console.WriteLine("\nCongradulations you have won ${0}!\n\n", (counter * 41667.00m));
+
+//End Project Two Part Three
+//Begin Project Two Part Four
+
+                Console.Write("Would you like to play again? Type quit to exit or enter to play again: ");
+                string exitProgramStr = Console.ReadLine().ToUpper();
+                if (exitProgramStr == "QUIT")
+                {
+                    Console.Clear();
+                    Console.Write("\n\n\n\n\n\n                         \"Thanks for playing\"\n\n\n\n\n\n");
+                    exitProgram = true;
+                }
+                else
+                {
+                    exitProgramStr = " ";
+                    Console.Clear();
+                }
+            }
+//End Project Two Part Four
         }
 
         public static void ExitMethod(string exitPro)
@@ -199,7 +248,5 @@ namespace ProjectTwo
                 System.Environment.Exit(1);
             }
         }
-
-       
     }
 }
