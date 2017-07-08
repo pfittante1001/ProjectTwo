@@ -35,6 +35,7 @@ namespace ProjectTwo
                 int minNum;
                 int tempMinNum;
                 int maxNum;
+                int tempMaxNum;
 
                 Console.Clear();
                 Console.Write("\n\nPlease enter the min number you have chosen for your range of numbers\n");
@@ -42,11 +43,15 @@ namespace ProjectTwo
 
                 string minNumStrUpper = Console.ReadLine().ToUpper();
 
-
-               while(int.TryParse(minNumStrUpper, out tempMinNum) == false)
+                ExitMethod(minNumStrUpper);
+                
+                while (int.TryParse(minNumStrUpper, out tempMinNum) == false)
                 {
-                    Console.Write("Please enter a valid number");
+                    Console.Write("Please enter a valid number: ");
                     minNumStrUpper = Console.ReadLine().ToUpper();
+
+                    ExitMethod(minNumStrUpper);
+                    
                     if (int.TryParse(minNumStrUpper, out tempMinNum) == true)
                     {
                         minNum = tempMinNum;
@@ -60,13 +65,18 @@ namespace ProjectTwo
                 {
                     Console.Write("Please enter a number greater than zero: ");
                     minNumStrUpper = Console.ReadLine().ToUpper();
+
+                    ExitMethod(minNumStrUpper);
+                    
                     while (int.TryParse(minNumStrUpper, out tempMinNum) == false)
                     {
                         Console.Write("Please enter a valid number: ");
                         minNumStrUpper = Console.ReadLine().ToUpper();
+
+                        ExitMethod(minNumStrUpper);
+                        
                         if (int.TryParse(minNumStrUpper, out tempMinNum) == true && tempMinNum > 0)
                         {
-                            Console.WriteLine("test");
                             minNum = tempMinNum;
                         }     
                     }
@@ -75,14 +85,93 @@ namespace ProjectTwo
 
 
 
+                //Input and validate max number
+                Console.Clear();
+                Console.Write("\n\nPlease enter the max number you have chosen for your range of numbers\n");
+                Console.Write("or quit to exit: ");
+
+                string maxNumStrUpper = Console.ReadLine().ToUpper();
+
+                ExitMethod(maxNumStrUpper);
+                
+                while (int.TryParse(maxNumStrUpper, out tempMaxNum) == false)
+                {
+                    Console.Write("Please enter a valid number: ");
+                    maxNumStrUpper = Console.ReadLine().ToUpper();
+
+                    ExitMethod(maxNumStrUpper);
+                    
+                    if (int.TryParse(maxNumStrUpper, out tempMaxNum) == true)
+                    {
+                        maxNum = tempMaxNum;
+                    }
+
+                }
+
+                maxNum = int.Parse(maxNumStrUpper);
+
+                while (maxNum < 0)
+                {
+                    Console.Write("Please enter a number greater than zero: ");
+                    maxNumStrUpper = Console.ReadLine().ToUpper();
+
+                    ExitMethod(maxNumStrUpper);
+                    
+                    while (int.TryParse(maxNumStrUpper, out tempMaxNum) == false)
+                    {
+                        Console.Write("Please enter a valid number: ");
+                        maxNumStrUpper = Console.ReadLine().ToUpper();
+
+                        ExitMethod(maxNumStrUpper);
+                        
+                        if (int.TryParse(maxNumStrUpper, out tempMaxNum) == true && tempMaxNum > 0)
+                        {
+                            maxNum = tempMaxNum;
+                        }
+                    }
+                    maxNum = int.Parse(maxNumStrUpper);
+                }
+
+                while (maxNum == minNum)
+                {
+                    Console.Write("Please enter a number greater than {0}: ", minNum);
+                    maxNumStrUpper = Console.ReadLine().ToUpper();
+
+                    ExitMethod(maxNumStrUpper);
+
+                    while (int.TryParse(maxNumStrUpper, out tempMaxNum) == false)
+                    {
+                        Console.Write("Please enter a valid number: ");
+                        maxNumStrUpper = Console.ReadLine().ToUpper();
+
+                        ExitMethod(maxNumStrUpper);
+
+                        if (int.TryParse(maxNumStrUpper, out tempMaxNum) == true && tempMaxNum > 0)
+                        {
+                            maxNum = tempMaxNum;
+                        }
+                    }
+                    maxNum = int.Parse(maxNumStrUpper);
+                }
 
 
+
+                //Input and validate max number
                 Console.WriteLine(minNum);
-
+                Console.WriteLine(maxNum);
                 exitProgram = true;
-
             }//end while loop
         }
 
+        public static void ExitMethod(string exitPro)
+        {
+            if (exitPro == "QUIT")
+            {
+                Console.Clear();
+                Console.Write("\n\n\n\n\n\n                         No one likes a quitter\n\n");
+                Console.Write("                             Bye Felicia!\n\n\n\n");
+                System.Environment.Exit(1);
+            }
+        }
     }
 }
