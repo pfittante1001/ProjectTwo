@@ -11,7 +11,7 @@ namespace ProjectTwo
 
         static void Main(string[] args)
         {
-
+//Begin Project Part One
             Console.Write("\t\t\tWelcome to the Lucky Number Game\n\n\n\n\n");
 
             Console.Write("     To play the game, you must enter two numbers. One will be the loweset\n\n");
@@ -36,6 +36,7 @@ namespace ProjectTwo
                 int tempMinNum;
                 int maxNum;
                 int tempMaxNum;
+                int[] luckyNum = new int[6];
 
                 Console.Clear();
                 Console.Write("\n\nPlease enter the min number you have chosen for your range of numbers\n");
@@ -47,7 +48,7 @@ namespace ProjectTwo
                 
                 while (int.TryParse(minNumStrUpper, out tempMinNum) == false)
                 {
-                    Console.Write("Please enter a valid number: ");
+                    Console.Write("Please enter a valid number or quit to exit: ");
                     minNumStrUpper = Console.ReadLine().ToUpper();
 
                     ExitMethod(minNumStrUpper);
@@ -63,14 +64,14 @@ namespace ProjectTwo
 
                while( minNum < 0)
                 {
-                    Console.Write("Please enter a number greater than zero: ");
+                    Console.Write("Please enter a number greater than zero or quit to exit: ");
                     minNumStrUpper = Console.ReadLine().ToUpper();
 
                     ExitMethod(minNumStrUpper);
                     
                     while (int.TryParse(minNumStrUpper, out tempMinNum) == false)
                     {
-                        Console.Write("Please enter a valid number: ");
+                        Console.Write("Please enter a valid number or quit to exit: ");
                         minNumStrUpper = Console.ReadLine().ToUpper();
 
                         ExitMethod(minNumStrUpper);
@@ -96,7 +97,7 @@ namespace ProjectTwo
                 
                 while (int.TryParse(maxNumStrUpper, out tempMaxNum) == false)
                 {
-                    Console.Write("Please enter a valid number: ");
+                    Console.Write("Please enter a valid number or quit to exit: ");
                     maxNumStrUpper = Console.ReadLine().ToUpper();
 
                     ExitMethod(maxNumStrUpper);
@@ -112,14 +113,14 @@ namespace ProjectTwo
 
                 while (maxNum < 0)
                 {
-                    Console.Write("Please enter a number greater than zero: ");
+                    Console.Write("Please enter a number greater than zero or quit to exit: ");
                     maxNumStrUpper = Console.ReadLine().ToUpper();
 
                     ExitMethod(maxNumStrUpper);
                     
                     while (int.TryParse(maxNumStrUpper, out tempMaxNum) == false)
                     {
-                        Console.Write("Please enter a valid number: ");
+                        Console.Write("Please enter a valid number or quit to exit: ");
                         maxNumStrUpper = Console.ReadLine().ToUpper();
 
                         ExitMethod(maxNumStrUpper);
@@ -134,14 +135,14 @@ namespace ProjectTwo
 
                 while (maxNum == minNum)
                 {
-                    Console.Write("Please enter a number greater than {0}: ", minNum);
+                    Console.Write("Please enter a number greater than {0} or quit to exit: ", minNum);
                     maxNumStrUpper = Console.ReadLine().ToUpper();
 
                     ExitMethod(maxNumStrUpper);
 
                     while (int.TryParse(maxNumStrUpper, out tempMaxNum) == false)
                     {
-                        Console.Write("Please enter a valid number: ");
+                        Console.Write("Please enter a valid number or quit to exit: ");
                         maxNumStrUpper = Console.ReadLine().ToUpper();
 
                         ExitMethod(maxNumStrUpper);
@@ -154,11 +155,36 @@ namespace ProjectTwo
                     maxNum = int.Parse(maxNumStrUpper);
                 }
 
+                Console.Clear();
+                Console.Write("\n\n    Please enter your six numbers. You cannot enter the same number twice.\n");
+                Console.Write("\n\n              The numbers you enter must be between {0} and {1}\n\n\n\n", minNum, maxNum);
+               
+                for (int i = 0; i < luckyNum.Length; i++)
+                {
+                    Console.Write("Please enter lucky number {0} or quit to exit: ", i + 1);
+                    maxNumStrUpper = Console.ReadLine().ToUpper();
 
+                    ExitMethod(maxNumStrUpper);
+
+                    luckyNum[i] = int.Parse(maxNumStrUpper);
+                    
+                    while ((luckyNum[i] < minNum) || (luckyNum[i] > maxNum))
+                    {
+                        Console.Write("Please enter a number between {0} and {1} or quit to exit: ", minNum, maxNum);
+                        maxNumStrUpper = Console.ReadLine().ToUpper();
+
+                        ExitMethod(maxNumStrUpper);
+
+                        luckyNum[i] = int.Parse(maxNumStrUpper);
+                        
+                    }
+                }
+//End Project Part One
+//Begin Project Part Two
 
                 //Input and validate max number
-                Console.WriteLine(minNum);
-                Console.WriteLine(maxNum);
+                //Console.WriteLine(minNum);
+                //Console.WriteLine(maxNum);
                 exitProgram = true;
             }//end while loop
         }
@@ -173,5 +199,7 @@ namespace ProjectTwo
                 System.Environment.Exit(1);
             }
         }
+
+       
     }
 }
