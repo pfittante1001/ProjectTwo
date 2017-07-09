@@ -3,6 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
+ * Pete Fittante
+ * WeCanCodeITBootCamp First Project
+ * 7/9/2017
+ * A console application that will is a lucky numbers guessing game similar to the lottery. 
+ * The user will choose a range of numbers and then try to guess all six of the numbers that 
+ * will be randomly generated within the range. The user will win a portion of the jackpot based 
+ * on the number of numbers guessed correctly.
+ * 
+ * 
+ * 
+ * This program receives input from a user, and developes an output based on the users input,
+ * then presents a prediction of the users future.
+ * 
+ * I used the following to complete this project:
+ * If statements
+ * Nested If Statements
+ * If Else Statements
+ * Switch Statements
+ * String Arrays and .Contains method to decrease the number of parameters in the If statements
+ * While Loop
+ * Global Variables
+ * int.TryParse() to correct the fatal exception when the wrong input was given by the user
+ *  
+ */
 
 namespace ProjectTwo
 {
@@ -37,7 +62,7 @@ namespace ProjectTwo
 
             Console.Write("           have choosen that match the random lucky numbers in your range.\n\n");
 
-            Console.Write("           You win a jackpot of $250,000 if you quess all six numbers.\n\n");
+            Console.Write("           You win a jackpot of $250,002 if you quess all six numbers.\n\n");
 
             Console.Write("                       Please press the \" Enter\" to continue.\n\n");
 
@@ -141,7 +166,7 @@ namespace ProjectTwo
                     maxNum = int.Parse(maxNumStrUpper);
                 }
 
-                while (maxNum == minNum)
+                while (maxNum <= minNum)
                 {
                     Console.Write("Please enter a number greater than {0} or quit to exit: ", minNum);
                     maxNumStrUpper = Console.ReadLine().ToUpper();
@@ -192,11 +217,31 @@ namespace ProjectTwo
                 Console.Clear();
                 Random randNum = new Random();
 
-                for (int i = 0; i < randNumArray.Length; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     randNumArray[i] = randNum.Next(minNum, maxNum);
+                    Console.Write(randNumArray[i]);
+                    for (int j = 1; j < randNumArray.Length; j++)
+                    {
+                        int test = randNum.Next(minNum, maxNum);
+                        Console.WriteLine(test);
+                        while (randNumArray.Contains(test) == true)
+                        {
+                            test = randNum.Next(minNum, maxNum);
+                        }
+
+                        randNumArray[j] = test;
+                        Console.Write(randNumArray[j]);
+                    }
                     Console.Write("Lucky Number: {0}\n", randNumArray[i]);
                 }
+
+                //for(int i = 0; i < randNumArray.Length; i++)
+                //{
+                //    Console.WriteLine(randNumArray[i]);
+                //}
+
+
 
 //End Project Two Part Two
 //Begin Project Two Part Three
@@ -216,7 +261,7 @@ namespace ProjectTwo
 
                 Console.Clear();
                 Console.Write("You have guessed {0} numbers correctly. \n\n", counter);
-                Console.WriteLine("\nCongradulations you have won ${0}!\n\n", (counter * 41667.00m));
+                Console.WriteLine("\nCongradulations you have won ${0}!\n\n", (counter * 41667d));
 
 //End Project Two Part Three
 //Begin Project Two Part Four
